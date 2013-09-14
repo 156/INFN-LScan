@@ -1,0 +1,52 @@
+#!/usr/bin/perl
+
+use Getopt::Long;
+
+require INFN::LScan;
+
+my $lscan = new INFN::LScan;
+
+print "running " . $lscan->get_name . " " . $lscan->get_version . "\n";
+
+my ($dir, $help, $check, $setup, $ok, $sqlite_file);
+
+my $opt = GetOptions(	"directory=s" => \$dir,
+					"file=s" => \$sqlite_file,
+					"setup" => \$setup,
+					"check" => \$check,
+					"ok" => \$ok,
+					"help" => \$help);
+					
+$sqlite_file |= 'lscan.sqlite';
+
+$lscan->open_database("$sqlite_file");
+
+$ok |= 0;
+
+if ($dir)
+{
+	$lscan->add_files($dir);
+	$lscan->f_to_database();
+}
+
+if ($check)
+{
+	$lscan->check_database($ok);
+}
+
+if ($help)
+{
+	print "-s setup or for new database creation\n";
+	print "-d <directory> add directory and recursive sub dirs\n";
+	print "-c check\n";
+	print "-o print ok file with md5 match\n";
+	print "-h this help output\n";
+	
+	die;
+}
+
+if ($setup)
+{
+	$lscan->dbc("CREATE TABLE files (id INTEGER PRIMARY KEY, filename)");
+	$lscan->dbc("CREATE TABLE md5 (id INTEGER PRIMARY KEY, hash)");
+}
