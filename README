@@ -3,7 +3,7 @@ INFN-LScan version 0.1
 
 This is a decent lightweight md5 directory based file watcher
 
-It is easy to use, check out the help by running lscan -h
+It is easy to use, check out the help by running lscan -h after you move it to /usr/sbin/ and chmod +x
 
 INSTALLATION
 
@@ -13,6 +13,9 @@ To install this module type the following:
    make
    make test
    make install
+   cp lib/lscan /usr/bin/
+   chmod +x /usr/bin/lscan
+
 
 DEPENDENCIES
 
