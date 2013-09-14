@@ -18,10 +18,9 @@ my $opt = GetOptions(	"directory=s" => \$dir,
 					"help" => \$help);
 					
 $sqlite_file |= 'lscan.sqlite';
+$ok |= 0;
 
 $lscan->open_database("$sqlite_file");
-
-$ok |= 0;
 
 if ($dir)
 {
@@ -39,6 +38,7 @@ if ($help)
 	print "-s setup or for new database creation\n";
 	print "-d <directory> add directory and recursive sub dirs\n";
 	print "-c check\n";
+	print "-f <filename> sqlite database finamele to use\n";
 	print "-o print ok file with md5 match\n";
 	print "-h this help output\n";
 	
