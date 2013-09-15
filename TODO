@@ -1,0 +1,1 @@
+add option to -r reset the database/database file (without dropping the install tables)
