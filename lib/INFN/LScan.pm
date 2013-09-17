@@ -17,7 +17,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw() ] );
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT = qw();
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 our $NAME = 'INFN::LScan';
 
 our $dbh;
@@ -90,8 +90,24 @@ sub check_database
 		if ($mode == 1) { print "$file_name -> $md5 - $md5_old ok\n" if ($md5 eq $md5_old); }
 		print "$file_name -> $md5 - $md5_old corrupt\n" if ($md5 ne $md5_old);
 		
+		if ($md5 ne $md5_old)
+		{
+			if ($mode == 2)
+			{
+				new_md5($file_id, $md5);
+			}
+		}
+		
 		close ($fd);
 	}
+}
+
+sub new_md5
+{
+	my $id = shift;
+	my $nmd5=shift;
+	
+	$dbh->do("update md5 set hash=" . $nmd5 . " where id=" . $id);
 }
 
 sub old_md5

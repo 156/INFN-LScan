@@ -2,6 +2,11 @@ Revision history for Perl extension INFN::LScan.
 
 0.1  Sat Sep 14 02:35:12 2013
 	- original version; created by h2xs 1.23 with options
-		-XAn INFN::LScan -v 0.1
-		-README updated
+		- XAn INFN::LScan -v 0.1
+		- README updated
+0.2 checks files
+	- version 0.2
+		- Now can check directories for known rootkits and malicious files
+		- README updated
+		- Changes updated
 

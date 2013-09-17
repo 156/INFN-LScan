@@ -1,9 +1,11 @@
 INFN-LScan version 0.1
 ======================
 
-This is a decent lightweight md5 directory based file watcher
+This is a decent lightweight md5 directory based file checksum tool
+It also scans dirs for known rootkits and malicious files
 
 It is easy to use, check out the help by running lscan -h after you move it to /usr/sbin/ and chmod +x
+
 
 INSTALLATION
 
@@ -13,8 +15,9 @@ To install this module type the following:
    make
    make test
    make install
-   cp lib/lscan /usr/bin/
+   cp lib/lscan.pl /usr/bin/lscan
    chmod +x /usr/bin/lscan
+
 
 
 DEPENDENCIES
@@ -24,6 +27,8 @@ This module requires these other modules and libraries:
 DBI
 File::Find
 Digest::MD5
+Getopt::Long;
+
 
 COPYRIGHT AND LICENCE
 

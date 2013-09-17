@@ -1,1 +1,3 @@
 add option to -r reset the database/database file (without dropping the install tables)
+add option to update database with new md5 checksums to prevent having to remake entire database
+add gui interface
